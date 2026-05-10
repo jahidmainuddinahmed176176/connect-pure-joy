@@ -115,6 +115,7 @@ VITE_SUPABASE_ANON_KEY=your_supabase_anon_key_here
 DATABASE_URL=your_database_url_here
 
 
+
 ## 📧 Contact
 
 **Jahid Mainuddin Ahmed**
