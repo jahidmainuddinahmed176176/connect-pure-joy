@@ -113,7 +113,7 @@ Create `.env.local` in your project root:
 VITE_SUPABASE_URL=your_supabase_url_here
 VITE_SUPABASE_ANON_KEY=your_supabase_anon_key_here
 DATABASE_URL=your_database_url_here
-
+```
 
 
 ## 📧 Contact
