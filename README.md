@@ -90,18 +90,37 @@ npm run dev
 
 
 
+```bash
 # Unit tests
 npm run test
 
 # E2E tests
 npm run test:e2e
 
-
 # Build image
 docker build -t connect-pure-joy .
 
 # Run container
 docker run -p 3000:3000 connect-pure-joy
+```
 
 
+## 📝 Environment Variables
 
+Create `.env.local` in your project root:
+
+```env
+VITE_SUPABASE_URL=your_supabase_url_here
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key_here
+DATABASE_URL=your_database_url_here
+
+
+## 📧 Contact
+
+**Jahid Mainuddin Ahmed**
+- GitHub: [@jahidmainuddinahmed176176](https://github.com/jahidmainuddinahmed176176)
+- Email: jahidmainuddinahmed@gmail.com
+
+---
+
+⭐ Star this repository if you found it helpful!
