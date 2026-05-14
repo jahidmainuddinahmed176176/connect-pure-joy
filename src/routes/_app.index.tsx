@@ -3,7 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/lib/auth";
-import { ImagePlus, X, Send } from "lucide-react";
+import { Paperclip, X, Send } from "lucide-react";
 import { toast } from "sonner";
 import { formatDistanceToNow } from "date-fns";
 
@@ -19,6 +19,10 @@ type Post = {
   created_at: string;
   profiles: { username: string; display_name: string | null; avatar_url: string | null } | null;
 };
+
+function isImageUrl(url: string) {
+  return /\.(png|jpe?g|gif|webp|svg|bmp|avif)(\?|$)/i.test(url);
+}
 
 function FeedPage() {
   const { user } = useAuth();
@@ -57,8 +61,7 @@ function FeedPage() {
         const { error: upErr } = await supabase.storage.from("post-images").upload(path, image);
         if (upErr) throw upErr;
         image_url = supabase.storage.from("post-images").getPublicUrl(path).data.publicUrl;
-      }
-      const { error } = await supabase.from("posts").insert({ user_id: user.id, content: content.trim(), image_url });
+      }      const { error } = await supabase.from("posts").insert({ user_id: user.id, content: content.trim(), image_url });
       if (error) throw error;
       setContent(""); setImage(null);
       if (fileRef.current) fileRef.current.value = "";
@@ -96,9 +99,9 @@ function FeedPage() {
             onClick={() => fileRef.current?.click()}
             className="flex items-center gap-2 rounded-full px-3 py-1.5 text-xs text-muted-foreground hover:bg-accent hover:text-foreground"
           >
-            <ImagePlus className="h-4 w-4" /> Image
+            <Paperclip className="h-4 w-4" /> Attach
           </button>
-          <input ref={fileRef} type="file" accept="image/*" hidden onChange={(e) => setImage(e.target.files?.[0] ?? null)} />
+          <input ref={fileRef} type="file" hidden onChange={(e) => setImage(e.target.files?.[0] ?? null)} />
           <button
             disabled={busy || (!content.trim() && !image)}
             className="flex items-center gap-2 rounded-full bg-primary px-4 py-1.5 text-xs font-semibold text-primary-foreground disabled:opacity-40"
@@ -120,7 +123,19 @@ function FeedPage() {
           </div>
           {p.content && <p className="whitespace-pre-wrap text-sm leading-relaxed">{p.content}</p>}
           {p.image_url && (
-            <img src={p.image_url} alt="" className="mt-3 w-full rounded-xl border border-border/60" loading="lazy" />
+            isImageUrl(p.image_url)
+              ? <img src={p.image_url} alt="" className="mt-3 w-full rounded-xl border border-border/60" loading="lazy" />
+              : (
+                <a
+                  href={p.image_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 flex items-center gap-2 rounded-xl border border-border/60 px-4 py-3 text-sm text-primary hover:bg-accent/40"
+                >
+                  <Paperclip className="h-4 w-4 shrink-0" />
+                  <span className="truncate">{decodeURIComponent(p.image_url.split("/").pop() ?? "Attachment")}</span>
+                </a>
+              )
           )}
         </article>
       ))}

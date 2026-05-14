@@ -1,12 +1,11 @@
 import { Link, useLocation } from "@tanstack/react-router";
-import { Home, MessageCircle, PlaySquare, Users, User } from "lucide-react";
+import { Home, MessageCircle, Users, User } from "lucide-react";
 import type { ReactNode } from "react";
 
 
 const tabs = [
   { to: "/", label: "Feed", icon: Home },
   { to: "/chats", label: "Chats", icon: MessageCircle },
-  { to: "/videos", label: "Videos", icon: PlaySquare },
   { to: "/groups", label: "Groups", icon: Users },
 ] as const;
 
