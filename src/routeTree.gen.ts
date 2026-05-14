@@ -12,7 +12,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as AppIndexRouteImport } from './routes/_app.index'
-import { Route as AppVideosRouteImport } from './routes/_app.videos'
 import { Route as AppProfileRouteImport } from './routes/_app.profile'
 import { Route as AppGroupsIndexRouteImport } from './routes/_app.groups.index'
 import { Route as AppChatsIndexRouteImport } from './routes/_app.chats.index'
@@ -31,11 +30,6 @@ const AppRoute = AppRouteImport.update({
 const AppIndexRoute = AppIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppVideosRoute = AppVideosRouteImport.update({
-  id: '/videos',
-  path: '/videos',
   getParentRoute: () => AppRoute,
 } as any)
 const AppProfileRoute = AppProfileRouteImport.update({
@@ -68,7 +62,6 @@ export interface FileRoutesByFullPath {
   '/': typeof AppIndexRoute
   '/login': typeof LoginRoute
   '/profile': typeof AppProfileRoute
-  '/videos': typeof AppVideosRoute
   '/chats/$userId': typeof AppChatsUserIdRoute
   '/groups/$groupId': typeof AppGroupsGroupIdRoute
   '/chats/': typeof AppChatsIndexRoute
@@ -77,7 +70,6 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/profile': typeof AppProfileRoute
-  '/videos': typeof AppVideosRoute
   '/': typeof AppIndexRoute
   '/chats/$userId': typeof AppChatsUserIdRoute
   '/groups/$groupId': typeof AppGroupsGroupIdRoute
@@ -89,7 +81,6 @@ export interface FileRoutesById {
   '/_app': typeof AppRouteWithChildren
   '/login': typeof LoginRoute
   '/_app/profile': typeof AppProfileRoute
-  '/_app/videos': typeof AppVideosRoute
   '/_app/': typeof AppIndexRoute
   '/_app/chats/$userId': typeof AppChatsUserIdRoute
   '/_app/groups/$groupId': typeof AppGroupsGroupIdRoute
@@ -102,7 +93,6 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/profile'
-    | '/videos'
     | '/chats/$userId'
     | '/groups/$groupId'
     | '/chats/'
@@ -111,7 +101,6 @@ export interface FileRouteTypes {
   to:
     | '/login'
     | '/profile'
-    | '/videos'
     | '/'
     | '/chats/$userId'
     | '/groups/$groupId'
@@ -122,7 +111,6 @@ export interface FileRouteTypes {
     | '/_app'
     | '/login'
     | '/_app/profile'
-    | '/_app/videos'
     | '/_app/'
     | '/_app/chats/$userId'
     | '/_app/groups/$groupId'
@@ -156,13 +144,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof AppIndexRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/_app/videos': {
-      id: '/_app/videos'
-      path: '/videos'
-      fullPath: '/videos'
-      preLoaderRoute: typeof AppVideosRouteImport
       parentRoute: typeof AppRoute
     }
     '/_app/profile': {
@@ -205,7 +186,6 @@ declare module '@tanstack/react-router' {
 
 interface AppRouteChildren {
   AppProfileRoute: typeof AppProfileRoute
-  AppVideosRoute: typeof AppVideosRoute
   AppIndexRoute: typeof AppIndexRoute
   AppChatsUserIdRoute: typeof AppChatsUserIdRoute
   AppGroupsGroupIdRoute: typeof AppGroupsGroupIdRoute
@@ -215,7 +195,6 @@ interface AppRouteChildren {
 
 const AppRouteChildren: AppRouteChildren = {
   AppProfileRoute: AppProfileRoute,
-  AppVideosRoute: AppVideosRoute,
   AppIndexRoute: AppIndexRoute,
   AppChatsUserIdRoute: AppChatsUserIdRoute,
   AppGroupsGroupIdRoute: AppGroupsGroupIdRoute,
