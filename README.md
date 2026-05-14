@@ -1,56 +1,31 @@
-\# Connect Pure Joy
-
-
+# Connect Pure Joy
 
 A modern full-stack social platform built with TanStack Start, TypeScript, Tailwind CSS, Supabase, and Prisma.
 
+## 🚀 Live Demo
 
+https://connect-pure-joy.vercel.app
 
-\## 🚀 Live Demo
+## ✨ Features
 
+- 🔐 Authentication with Supabase
+- 💬 Real-time chat
+- 📽️ Video sharing
+- 👥 Group discussions
+- 📱 Responsive design
 
-
-\[Coming soon]
-
-
-
-\## ✨ Features
-
-
-
-\- 🔐 Authentication with Supabase
-
-\- 💬 Real-time chat
-
-\- 📽️ Video sharing
-
-\- 👥 Group discussions
-
-\- 📱 Responsive design
-
-
-
-\## 🛠️ Tech Stack
-
-
+## 🛠️ Tech Stack
 
 | Category | Technologies |
-
 |----------|--------------|
-
 | Frontend | TanStack Start, React, TypeScript, Tailwind CSS |
-
 | Backend | Supabase, Prisma, PostgreSQL |
-
 | Testing | Vitest, Playwright |
-
 | DevOps | Docker, GitHub Actions |
+| Deployment | Vercel |
 
-| Deployment | Vercel (soon) |
+## 📁 Project Structure
 
-
-
-\## 📁 Project Structure
 
 connect-pure-joy/
 
@@ -85,83 +60,68 @@ connect-pure-joy/
 
 
 
-\## 🏃‍♂️ Getting Started
 
+## 🏃‍♂️ Getting Started
 
+### Prerequisites
 
-\### Prerequisites
+- Node.js 20+
+- npm or bun
 
-
-
-\- Node.js 20+
-
-\- npm or bun
-
-
-
-\### Installation
-
-
+### Installation
 
 ```bash
-
-\# Clone the repository
-
+# Clone the repository
 git clone https://github.com/jahidmainuddinahmed176176/connect-pure-joy.git
-
 cd connect-pure-joy
 
-
-
-\# Install dependencies
-
+# Install dependencies
 npm install
 
-
-
-\# Set up environment variables
-
+# Set up environment variables
 cp .env.example .env.local
+# Edit .env.local with your Supabase credentials
 
-\# Edit .env.local with your Supabase credentials
-
-
-
-\# Run database migrations
-
+# Run database migrations
 npx prisma migrate dev
 
-
-
-\# Start development server
-
+# Start development server
 npm run dev
 
 
 
-
+```bash
 # Unit tests
-
 npm run test
 
-
-
-\# E2E tests
-
+# E2E tests
 npm run test:e2e
 
-
-
 # Build image
-
 docker build -t connect-pure-joy .
 
-
-
-\# Run container
-
+# Run container
 docker run -p 3000:3000 connect-pure-joy
+```
 
 
+## 📝 Environment Variables
+
+Create `.env.local` in your project root:
+
+```env
+VITE_SUPABASE_URL=your_supabase_url_here
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key_here
+DATABASE_URL=your_database_url_here
+```
 
 
+## 📧 Contact
+
+**Jahid Mainuddin Ahmed**
+- GitHub: [@jahidmainuddinahmed176176](https://github.com/jahidmainuddinahmed176176)
+- Email: jahidmainuddinahmed@gmail.com
+
+---
+
+⭐ Star this repository if you found it helpful!
